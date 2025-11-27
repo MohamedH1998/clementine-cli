@@ -1,4 +1,4 @@
-import prompts from 'prompts';
+import { coloredPrompts } from './helpers.js';
 
 // Feature selection
 export type FeatureType = 'queues' | 'worker-only';
@@ -6,7 +6,7 @@ export type FeatureType = 'queues' | 'worker-only';
 export async function promptFeatureSelection(isExistingProject: boolean): Promise<FeatureType | null> {
   if (isExistingProject) {
     console.log('\n✨ Detected existing Worker project\n');
-    const response = await prompts({
+    const response = await coloredPrompts({
       type: 'select',
       name: 'feature',
       message: 'What would you like to add?',
@@ -26,7 +26,7 @@ export async function promptFeatureSelection(isExistingProject: boolean): Promis
     return response.feature || null;
   } else {
     console.log('\n✨ No Worker project detected\n');
-    const response = await prompts({
+    const response = await coloredPrompts({
       type: 'select',
       name: 'feature',
       message: 'What would you like to create?',
@@ -65,7 +65,7 @@ export interface NewProjectChoices {
 export async function promptExistingProject(): Promise<ExistingProjectChoices | null> {
   console.log('\nDetected a Cloudflare Worker project in this directory.\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'select',
       name: 'action',
@@ -112,7 +112,7 @@ export async function promptExistingProject(): Promise<ExistingProjectChoices | 
 export async function promptNewProject(): Promise<NewProjectChoices | null> {
   console.log('\nNo Worker project detected. Let\'s create a new one!\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'text',
       name: 'projectName',
@@ -151,7 +151,7 @@ export async function promptNewProject(): Promise<NewProjectChoices | null> {
 }
 
 export async function confirmAction(message: string): Promise<boolean> {
-  const response = await prompts({
+  const response = await coloredPrompts({
     type: 'confirm',
     name: 'confirmed',
     message,
@@ -178,7 +178,7 @@ export interface ExistingQueueProjectChoices {
 export async function promptNewQueueProject(): Promise<NewQueueProjectChoices | null> {
   console.log('\nNo Worker project detected. Let\'s create a new one with Queues!\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'text',
       name: 'projectName',
@@ -221,7 +221,7 @@ export interface WorkerOnlyProjectChoices {
 export async function promptWorkerOnlyProject(): Promise<WorkerOnlyProjectChoices | null> {
   console.log('\nCreating a basic Worker project (no primitives).\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'text',
       name: 'projectName',
@@ -242,7 +242,7 @@ export async function promptWorkerOnlyProject(): Promise<WorkerOnlyProjectChoice
 export async function promptExistingQueueProject(): Promise<ExistingQueueProjectChoices | null> {
   console.log('\nDetected a Cloudflare Worker project in this directory.\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'select',
       name: 'action',

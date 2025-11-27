@@ -3,7 +3,7 @@ import { registry } from '../primitives/index.js';
 import { runGenericNewFlow } from '../lib/flows/generic-new.js';
 import { runGenericExistingFlow } from '../lib/flows/generic-existing.js';
 import { logger } from '../lib/logger.js';
-import prompts from 'prompts';
+import { coloredPrompts } from '../lib/helpers.js';
 
 export interface InitOptions {
   add?: boolean;
@@ -122,7 +122,7 @@ async function promptPrimitiveSelection(isExistingProject: boolean): Promise<str
 
   console.log(isExistingProject ? '\n✨ Detected existing Worker project\n' : '\n✨ No Worker project detected\n');
 
-  const response = await prompts({
+  const response = await coloredPrompts({
     type: 'select',
     name: 'primitive',
     message,

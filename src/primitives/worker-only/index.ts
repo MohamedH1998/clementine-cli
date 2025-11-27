@@ -1,5 +1,5 @@
-import prompts from 'prompts';
 import { Primitive, PrimitiveConfig } from '../base.js';
+import { coloredPrompts } from '../../lib/helpers.js';
 
 export interface WorkerOnlyConfig extends PrimitiveConfig {
   projectName: string;
@@ -16,7 +16,7 @@ export const WorkerOnlyPrimitive: Primitive = {
   async promptNew(): Promise<WorkerOnlyConfig | null> {
     console.log('\nCreating a basic Worker project (no primitives).\n');
 
-    const response = await prompts([
+    const response = await coloredPrompts([
       {
         type: 'text',
         name: 'projectName',

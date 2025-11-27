@@ -1,6 +1,6 @@
 import { execa } from 'execa';
-import prompts from 'prompts';
 import { logger } from './logger.js';
+import { coloredPrompts } from './helpers.js';
 
 export interface DeployOptions {
   projectDir: string;
@@ -9,7 +9,7 @@ export interface DeployOptions {
 }
 
 export async function promptDeploy(): Promise<boolean> {
-  const response = await prompts({
+  const response = await coloredPrompts({
     type: 'confirm',
     name: 'deploy',
     message: 'Deploy to Cloudflare now?',

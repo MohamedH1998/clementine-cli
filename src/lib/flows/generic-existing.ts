@@ -1,10 +1,9 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import prompts from 'prompts';
-import { execa } from 'execa';
 import { ProjectContext } from '../detect.js';
 import { Primitive, PrimitiveConfig } from '../../primitives/base.js';
 import { logger } from '../logger.js';
+import { coloredPrompts } from '../helpers.js';
 
 /**
  * Generic flow for adding a primitive to an existing Worker project
@@ -79,7 +78,7 @@ export async function runGenericExistingFlow(
   // Step 4: Ask if they want to run primitive-specific setup
   if (primitive.preDeploySteps) {
     console.log('');
-    const response = await prompts({
+    const response = await coloredPrompts({
       type: 'confirm',
       name: 'createResource',
       message: `Create ${primitive.name} resources in Cloudflare now?`,

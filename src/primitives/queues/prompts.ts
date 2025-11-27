@@ -1,4 +1,4 @@
-import prompts from 'prompts';
+import { coloredPrompts } from '../../lib/helpers.js';
 
 export interface NewQueueProjectChoices {
   projectName: string;
@@ -15,7 +15,7 @@ export interface ExistingQueueProjectChoices {
 export async function promptNewQueueProject(): Promise<NewQueueProjectChoices | null> {
   console.log('\nNo Worker project detected. Let\'s create a new one with Queues!\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'text',
       name: 'projectName',
@@ -52,7 +52,7 @@ export async function promptNewQueueProject(): Promise<NewQueueProjectChoices | 
 export async function promptExistingQueueProject(): Promise<ExistingQueueProjectChoices | null> {
   console.log('\nDetected a Cloudflare Worker project in this directory.\n');
 
-  const response = await prompts([
+  const response = await coloredPrompts([
     {
       type: 'select',
       name: 'action',
