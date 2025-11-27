@@ -10,7 +10,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
   },
   "keywords": [
     "cloudflare",
@@ -24,6 +27,16 @@
   ],
   "author": "Mohamed Hassan <mohamedahassan1998@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohamedH1998/clementine-cli.git"
+  },
+  "homepage": "https://github.com/MohamedH1998/clementine-cli#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@types/prompts": "^2.4.9",
     "execa": "^9.5.2",
